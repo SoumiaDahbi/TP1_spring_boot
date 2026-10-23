@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestion de Stock - Pharmacie</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body class="container py-4 bg-light">
+    <h2 class="mb-4 text-primary">Liste des Produits en Stock</h2>
+    <table class="table table-bordered table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th><th>Nom</th><th>Prix (DH)</th><th>Code Barre</th><th>Expiration</th><th>Catégorie</th><th>Fournisseur</th><th>Tags</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="p : ${produits}">
+                <td th:text="${p.id}"></td>
+                <td th:text="${p.nom}"></td>
+                <td th:text="${p.prix}"></td>
+                <td th:text="${p.codeBarre}"></td>
+                <td th:text="${p.dateExpiration}"></td>
+                <td th:text="${p.categorie != null ? p.categorie.nom : ''}"></td>
+                <td th:text="${p.fournisseur != null ? p.fournisseur.nom : ''}"></td>
+                <td><span th:each="t : ${p.tags}" class="badge bg-info text-dark me-1" th:text="${t.libelle}"></span></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
